@@ -67,3 +67,13 @@ findBox(Box, Location, BoxLocation, Actions_IN, Actions_OUT, TravRooms_IN, TravR
 ```
 Falls sich Shakey nicht im selben Raum befindet wie die Box, wird mithilfe der `switchRoom()` Funktion der Raum gewechselt und die Funktion `findBox()` rekursiv mit dem neuen Shakey Standort aufgerufen.
 
+```Prolog
+switchRoom(Actions_IN, Actions_OUT, Location, NewLocation, TravRooms_IN, TravRooms_OUT) :-
+    room(NewLocation),
+    not(member(NewLocation, TravRooms_IN)),
+    string_concat("changed Room from ", Location, Message1),
+    string_concat(Message1, " to ", Message2),
+    string_concat(Message2, NewLocation, Message3),
+    append(Actions_IN, [Message3], Actions_OUT),
+    append(TravRooms_IN, [NewLocation], TravRooms_OUT).
+```
