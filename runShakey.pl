@@ -1,8 +1,8 @@
-:- [floorplan, shakey].
+:- [floorplan, stacking, shakey].
 
 :- initialization(main).
 
 /*moveBox(wichBox,toRoom, startingPlaceFromShakey)*/
 main :-
-    moveBox(box1, room3, room4).
+    moveBox(box3, room1, room4).
 

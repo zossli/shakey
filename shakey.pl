@@ -3,20 +3,21 @@ moveBox(Box, Destination, StartLocation) :-
     findRoom(BoxLocation, Destination, Actions_X, Actions_OUT, [BoxLocation], _),
     printActions(Actions_OUT).
 
-
-
+findBox(Box, Location, BoxLocation, Actions_IN, Actions_OUT, _, _) :-
+    room_contains_box(Location, Box),
+	stackMember(Box, Stack, Actions_IN, Actions_1),
+	firstInStack(Box,Actions_1,Actions_2),
+    BoxLocation = Location,
+    append(Actions_2,["Found Box"], Actions_OUT).
 
 findBox(Box, Location, BoxLocation, Actions_IN, Actions_OUT, _, _) :-
     room_contains_box(Location, Box),
     BoxLocation = Location,
     append(Actions_IN,["Found Box"], Actions_OUT).
-
-
-
+	
 findBox(Box, Location, BoxLocation, Actions_IN, Actions_OUT, TravRooms_IN, TravRooms_OUT) :-
     switchRoom(Actions_IN, Actions_X, Location, Location_X, TravRooms_IN, TravRooms_X),
     findBox(Box, Location_X, BoxLocation, Actions_X, Actions_OUT, TravRooms_X, TravRooms_OUT).
-
 
 findRoom(Location, Destination, Actions_IN, Actions_OUT, _, _) :-
     Location = Destination,
@@ -35,22 +36,12 @@ switchRoom(Actions_IN, Actions_OUT, Location, NewLocation, TravRooms_IN, TravRoo
     append(Actions_IN, [Message3], Actions_OUT),
     append(TravRooms_IN, [NewLocation], TravRooms_OUT).
 
+
 printActions(Actions) :-
     Actions = [].
-
-
 
 printActions(Actions) :-
     [Action | Rest] = Actions,
     write(Action),
     write("\n"),
     printActions(Rest).
-
-pickUpBox(Actions_IN, Actions_OUT, HoldingTargetBox) :-
-HoldingTargetBox = true,
-append(Actions_IN, ["Found Box"], Actions_OUT).
-
-
-stackMember :- stack(L), member(X, L).
-
-getBox(Box) :- stack(Box),
