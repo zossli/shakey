@@ -2,6 +2,8 @@
 Für den Unterricht vom Frühlingssemester 2017 wurde ein Prolog Programm geschrieben, welches Shakey simuliert.
 In diesem Readme.md wird kurz auf die einzelnen Funktionen eingegangen.
 
+Um das Program auszuführen, müssen alle Prolog Files (runShakey.pl, floorplan.pl, shakey.pl, stacking.pl) im selben Ordner liegen. Es muss lediglich das File runShakey ausgeführt werden. Alle anderen werden durch runShakey selbst aufgerufen. 
+
 ## [runShakey.pl](runShakey.pl)
 ```Prolog
 :- [floorplan, stacking, shakey].
