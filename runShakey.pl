@@ -4,5 +4,5 @@
 
 /*moveBox(wichBox,toRoom, startingPlaceFromShakey)*/
 main :-
-    moveBox(box3, room1, room4).
+    moveBox(box5, room8, room9).
 
