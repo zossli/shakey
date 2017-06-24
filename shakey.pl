@@ -8,12 +8,12 @@ findBox(Box, Location, BoxLocation, Actions_IN, Actions_OUT, _, _) :-
 	stackMember(Box, Stack, Actions_IN, Actions_1),
 	firstInStack(Box,Actions_1,Actions_2),
     BoxLocation = Location,
-    append(Actions_2,["Found Box"], Actions_OUT).
+    append(Actions_2,["Pick up Box"], Actions_OUT).
 
 findBox(Box, Location, BoxLocation, Actions_IN, Actions_OUT, _, _) :-
     room_contains_box(Location, Box),
     BoxLocation = Location,
-    append(Actions_IN,["Found Box"], Actions_OUT).
+    append(Actions_IN,["Pick up Box"], Actions_OUT).
 	
 findBox(Box, Location, BoxLocation, Actions_IN, Actions_OUT, TravRooms_IN, TravRooms_OUT) :-
     switchRoom(Actions_IN, Actions_X, Location, Location_X, TravRooms_IN, TravRooms_X),
@@ -35,10 +35,6 @@ switchRoom(Actions_IN, Actions_OUT, Location, NewLocation, TravRooms_IN, TravRoo
     string_concat(Message2, NewLocation, Message3),
     append(Actions_IN, [Message3], Actions_OUT),
     append(TravRooms_IN, [NewLocation], TravRooms_OUT).
-	
-pickUpBox(Actions_IN, Actions_OUT, HoldingTargetBox) :-
-	HoldingTargetBox = true,
-	append(Actions_IN, ["Found Box"], Actions_OUT).
 
 printActions(Actions) :-
     Actions = [].
