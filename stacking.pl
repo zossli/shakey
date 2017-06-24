@@ -23,7 +23,3 @@ unstack(Box,Stack, Actions_IN, Actions_OUT) :-
 	member(Box, Others),
 	append(Actions_IN,["Unstack top Box"], Actions_1),
 	unstack(Box,Others, Actions_1, Actions_OUT).
-
-pickUpBox(Actions_IN, Actions_OUT, HoldingTargetBox) :-
-	HoldingTargetBox = true,
-	append(Actions_IN, ["Found Box"], Actions_OUT).

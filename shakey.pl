@@ -35,7 +35,9 @@ switchRoom(Actions_IN, Actions_OUT, Location, NewLocation, TravRooms_IN, TravRoo
     string_concat(Message2, NewLocation, Message3),
     append(Actions_IN, [Message3], Actions_OUT),
     append(TravRooms_IN, [NewLocation], TravRooms_OUT).
-
+pickUpBox(Actions_IN, Actions_OUT, HoldingTargetBox) :-
+	HoldingTargetBox = true,
+	append(Actions_IN, ["Found Box"], Actions_OUT).
 
 printActions(Actions) :-
     Actions = [].
